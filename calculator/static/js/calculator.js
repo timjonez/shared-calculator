@@ -1,3 +1,20 @@
+let currentCalc = '';
+
+let buttonList = document.getElementsByClassName('number-button')
+for (i=0; i < buttonList.length; i++){
+    buttonList[i].addEventListener('click', addToCalc)
+}
+
+let operatorList = document.getElementsByClassName('operators')
+for (i=0; i < operatorList.length; i++){
+    operatorList[i].addEventListener('click', addToCalc)
+}
+
+
+function addToCalc(e){
+    currentCalc = currentCalc + e.srcElement.innerHTML
+    console.log(currentCalc)
+}
 
 const calcSocket = new WebSocket(
     'ws://'
