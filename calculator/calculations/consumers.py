@@ -2,8 +2,14 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
+from .models import Calculation
+
 
 class CalculationConsumer(WebsocketConsumer):
+    def get_calculations(self):
+        calculations = Calculation.objects.all().order_by('date_created')[:10]
+        for calculation in calculations:
+            self.send(text_data=json.dumps({'calculation': calculation.body }))
     def connect(self):
         self.room_name = "home"
         self.room_group_name = "index"
@@ -14,6 +20,7 @@ class CalculationConsumer(WebsocketConsumer):
         )
 
         self.accept()
+        self.get_calculations()
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
