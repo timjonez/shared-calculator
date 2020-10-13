@@ -29,11 +29,10 @@ calcSocket.onmessage = function(e) {
     document.querySelector('#log').appendChild(el)
 }
 
-document.querySelector('#submit').onclick = function(e) {
-    const calcDOM = document.querySelector('#input');
-    const calc = calcDOM.value;
-    calcSocket.send(JSON.stringify({
-        'calculation': calc
-    }));
-    calcDOM.value = '';
+document.querySelector('#enter').onclick = function(e){
+    calcSocket.send(JSON.stringify(
+        {
+            'calculation': currentCalc
+        }));
+        currentCalc = '';
 }
