@@ -1,0 +1,10 @@
+#log{
+    background-color: lightgray;
+    text-align: center;
+}
+
+.operators, .number-button{
+    background-color: lightgreen;
+    text-align: center;
+    margin: 1px;
+}
