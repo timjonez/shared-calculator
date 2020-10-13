@@ -7,7 +7,9 @@ const calcSocket = new WebSocket(
 
 calcSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    document.querySelector('#log').value += (data.calculation + '\n');
+    var el = document.createElement("h5")
+    el.innerHTML = data.calculation
+    document.querySelector('#log').appendChild(el)
 }
 
 document.querySelector('#submit').onclick = function(e) {
