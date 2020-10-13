@@ -42,6 +42,8 @@ class CalculationConsumer(WebsocketConsumer):
 
     def chat_message(self, event):
         calc = event['calculation']
+        calc_object = Calculation(body=calc)
+        calc_object.save()
 
         self.send(text_data=json.dumps({
             'calculation': calc
