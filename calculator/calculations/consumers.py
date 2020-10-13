@@ -1,6 +1,7 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from .math_parser import number_parse
 
 from .models import Calculation
 
@@ -42,9 +43,11 @@ class CalculationConsumer(WebsocketConsumer):
 
     def chat_message(self, event):
         calc = event['calculation']
-        calc_object = Calculation(body=calc)
+        result = number_parse(calc)
+        final = (calc + ' = ' + str(result))
+        calc_object = Calculation(body=final)
         calc_object.save()
 
         self.send(text_data=json.dumps({
-            'calculation': calc
+            'calculation': final
         }))
