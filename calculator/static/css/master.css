@@ -1,23 +1,25 @@
 html, body{
     background-color: #f2f2f2;
-    height: 100vh;
 }
 
 #log{
     background-color: white;
     text-align: center;
+    width: 350px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .number-button{
-    background-color: white;
-    border: 2px solid #f2f2f2;
+    background-color:   white;
+    border: 2px solid #d9d9d9;
     width: 100%;
     font-size: 1.5em;
 }
 
 #clear, .operator{
-    background-color: #d9d9d9;
-    border: 2px solid #f2f2f2;
+    background-color:   white;
+    border: 2px solid #d9d9d9;
     width: 100%;
     font-size: 1.5em;
 }
@@ -25,7 +27,20 @@ html, body{
 
 #enter{
     background-color: red;
-    border: 2px solid #f2f2f2;
+    border: 2px solid #d9d9d9;
     height: 80%;
     font-size: 1.5em;
+}
+
+#calc-display{
+    background-color: black;
+    color: white;
+    font-size: 1.5em;
+}
+
+.calc-box{
+    background-color: white;
+    width: 350px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
