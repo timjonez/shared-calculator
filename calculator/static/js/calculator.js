@@ -1,4 +1,4 @@
-let currentCalc = '';
+let currentCalc = '0';
 let display = document.querySelector('#calc-display')
 
 let buttonList = document.getElementsByClassName('number-button')
@@ -40,7 +40,7 @@ document.querySelector('#enter').onclick = function(e){
 }
 
 document.querySelector('#clear').onclick = function(e){
-    display.value = currentCalc = ''
+    display.value = currentCalc = '0'
 }
 
 function splitExpression(input) {
