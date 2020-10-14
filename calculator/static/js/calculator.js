@@ -2,16 +2,20 @@ let currentCalc = '0';
 let display = document.querySelector('#calc-display')
 let logElement = document.querySelector('#log')
 
-let buttonList = document.getElementsByClassName('number-button')
-for (i=0; i < buttonList.length; i++){
-    buttonList[i].addEventListener('click', addToCalc)
+function addToCalc(e){
+    currentCalc = display.value + e.srcElement.innerHTML
+    display.value = currentCalc
 }
 
-let operatorList = document.getElementsByClassName('operator')
-for (i=0; i < operatorList.length; i++){
-    operatorList[i].addEventListener('click', addToCalc)
+function addClickListen(className, clickFunc){
+    elementList = document.getElementsByClassName(className)
+    for (i=0; i < elementList.length; i++){
+        elementList[i].addEventListener('click', clickFunc)
+    }
 }
 
+addClickListen('number-button', addToCalc)
+addClickListen('operator', addToCalc)
 
 function addToCalc(e){
     currentCalc = display.value + e.srcElement.innerHTML
