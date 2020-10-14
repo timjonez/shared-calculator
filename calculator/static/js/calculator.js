@@ -32,9 +32,58 @@ calcSocket.onmessage = function(e) {
 }
 
 document.querySelector('#enter').onclick = function(e){
+    splitExpression(currentCalc)
     calcSocket.send(JSON.stringify(
         {
             'calculation': currentCalc
         }));
-        currentCalc = '';
+}
+
+document.querySelector('#clear').onclick = function(e){
+    display.value = currentCalc = ''
+}
+
+function splitExpression(input) {
+    let result = ''
+    for (let i = 0; i < input.length; i++) {
+        switch (input[i]) {
+            case "+":
+                result = Calculate(Number(input.slice(0, i)), "+", Number(input.slice(i+1, input.length)))
+                currentCalc = currentCalc + ' = '+ result.toString()
+                display.value = result
+                break;
+            case "-":
+                result = Calculate(Number(input.slice(0, i)), "-", Number(input.slice(i+1, input.length)))
+                currentCalc = currentCalc + ' = '+ result.toString()
+                display.value = result
+                break;
+            case "×":
+                result = Calculate(Number(input.slice(0, i)), "×", Number(input.slice(i+1, input.length)))
+                currentCalc = currentCalc + ' = '+ result.toString()
+                display.value = result
+                break;
+            case "÷":
+                result = Calculate(Number(input.slice(0, i)), "÷", Number(input.slice(i+1, input.length)))
+                currentCalc = currentCalc + ' = '+ result.toString()
+                display.value = result
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+function Calculate(firstNumber, operator, secondNumber) {
+    switch (operator) {
+        case "+":
+            return firstNumber + secondNumber;
+        case "-":
+            return firstNumber - secondNumber;
+        case "×":
+            return firstNumber * secondNumber;
+        case "÷":
+            return firstNumber / secondNumber;
+        default:
+            break;
+    }
 }
