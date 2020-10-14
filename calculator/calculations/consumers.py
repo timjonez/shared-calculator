@@ -32,6 +32,9 @@ class CalculationConsumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         calc = text_data_json['calculation']
 
+        calc_object = Calculation(body=calc)
+        calc_object.save()
+
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
@@ -42,8 +45,6 @@ class CalculationConsumer(WebsocketConsumer):
 
     def chat_message(self, event):
         calc = event['calculation']
-        calc_object = Calculation(body=calc)
-        calc_object.save()
 
         self.send(text_data=json.dumps({
             'calculation': calc
