@@ -92,3 +92,23 @@ function Calculate(firstNumber, operator, secondNumber) {
             break;
     }
 }
+
+document.onkeyup = function(e){
+    if (!isNaN(e.key)) {
+        display.value = currentCalc = display.value + e.key.toString()
+    } else if (e.key=="+" || e.key=="-" || e.key=="×" || e.key=="÷" || e.key==".") {
+        display.value = currentCalc = display.value + e.key.toString()
+    } else if (e.key == "*") {
+        currentCalc = display.value + "×"
+        display.value = currentCalc
+    } else if (e.key == "/") {
+        currentCalc = display.value + "÷"
+        display.value = currentCalc
+    } else if ( e.key=='Enter' || e.key== "="){
+        startCalculation()
+    } else if (e.key == 'Backspace') {
+        display.value = currentCalc = '0'
+    } else {
+        console.log(e)
+    }
+}
