@@ -17,11 +17,6 @@ function addClickListen(className, clickFunc){
 addClickListen('number-button', addToCalc)
 addClickListen('operator', addToCalc)
 
-function addToCalc(e){
-    currentCalc = display.value + e.srcElement.innerHTML
-    display.value = currentCalc
-    console.log(currentCalc)
-}
 
 const calcSocket = new WebSocket(
     `ws://${window.location.host}/ws/calculations/`
@@ -32,7 +27,6 @@ calcSocket.onmessage = function(e) {
     childCount = logElement.childElementCount
     if (childCount >= 10) {
         let extra = logElement.lastElementChild
-        console.log(extra.innerHTML)
         extra.remove()
     }
     var el = document.createElement("h5")
@@ -40,7 +34,9 @@ calcSocket.onmessage = function(e) {
     logElement.prepend(el)
 }
 
-document.querySelector('#enter').onclick = function(e){
+document.querySelector('#enter').addEventListener('click', startCalculation)
+
+function startCalculation(e){
     splitExpression(currentCalc)
     calcSocket.send(JSON.stringify(
         {
