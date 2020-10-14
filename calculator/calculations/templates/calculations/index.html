@@ -4,44 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tim's Calculator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/master.css' %}">
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row mx-auto mb-3">
-            <div class="col-12 col-lg-6 mx-auto">
-                <div class="row">
-                    <div class="col-3 number-button">1</div>
-                    <div class="col-3 number-button">2</div>
-                    <div class="col-3 number-button">3</div>
-                </div>
-                <div class="row">
-                    <div class="col-3 number-button">4</div>
-                    <div class="col-3 number-button">5</div>
-                    <div class="col-3 number-button">6</div>
-                </div>
-                <div class="row">
-                    <div class="col-3 number-button">7</div>
-                    <div class="col-3 number-button">8</div>
-                    <div class="col-3 number-button">9</div>
-                </div>
-                <div class="row">
-                    <div class="col-2 operators">+</div>
-                    <div class="col-2 operators">-</div>
-                    <div class="col-2 operators">x</div>
-                    <div class="col-2 operators">/</div>
-                    <div class="col-1 operators">.</div>
-                </div>
-                <div id="enter">
-                    Calculate
-                </div>
+    <div class="container mt-5 h-100">
+        <div>
+            <input id="calc-display" class="text-right" type="text" disabled value="">
+        </div>
+        <div class="col-4 mx-auto row">
+            <div class="col-3 p-0">
+                <button class="col operator">+</button>
+                <button class="col number-button">7</button>
+                <button class="col number-button">4</button>
+                <button class="col number-button">1</button>
+                <button class="col number-button">0</button>
+            </div>
+            <div class="col-3 p-0">
+                <button class="col operator">-</button>
+                <button class="col number-button">8</button>
+                <button class="col number-button">5</button>
+                <button class="col number-button">2</button>
+                <button class="col number-button">.</button>
+            </div>
+            <div class="col-3 p-0">
+                <button class="col operator">×</button>
+                <button class="col number-button">9</button>
+                <button class="col number-button">6</button>
+                <button class="col number-button">3</button>
+                <button class="col" id="clear">AC</button>
+            </div>
+            <div class="col-3 p-0">
+                <button class="col operator">÷</button>
+                <button id="enter" class="col">=</button>
             </div>
         </div>
         <div class="row mx-auto">
-            <div id="log" class="col-12 col-lg-6 mx-auto">
-                <h1>Start</h1>
+            <div id="log" class="col-12 col-lg-4 mx-auto mt-5">
             </div>
         </div>
     </div>
