@@ -1,17 +1,31 @@
+html, body{
+    background-color: #f2f2f2;
+    height: 100vh;
+}
+
 #log{
-    background-color: lightgray;
+    background-color: white;
     text-align: center;
 }
 
-.operators, .number-button{
-    background-color: lightgreen;
-    text-align: center;
-    margin: 1px;
+.number-button{
+    background-color: white;
+    border: 2px solid #f2f2f2;
+    width: 100%;
+    font-size: 1.5em;
 }
+
+#clear, .operator{
+    background-color: #d9d9d9;
+    border: 2px solid #f2f2f2;
+    width: 100%;
+    font-size: 1.5em;
+}
+
 
 #enter{
     background-color: red;
-    width: 30%;
-    padding-left: 30px;
+    border: 2px solid #f2f2f2;
+    height: 80%;
     font-size: 1.5em;
 }
