@@ -44,8 +44,14 @@ function startCalculation(e){
         }));
 }
 
-document.querySelector('#clear').onclick = function(e){
+document.querySelector('#clearAll').onclick = function(e){
     display.value = currentCalc = '0'
+}
+
+document.querySelector('#clear').addEventListener('click', deleteLastChar)
+function deleteLastChar(e) {
+    lastChar = display.value.length - 1
+    display.value = currentCalc = display.value.slice(0, lastChar)
 }
 
 function splitExpression(input) {
@@ -107,7 +113,7 @@ document.onkeyup = function(e){
     } else if ( e.key=='Enter' || e.key== "="){
         startCalculation()
     } else if (e.key == 'Backspace') {
-        display.value = currentCalc = '0'
+        deleteLastChar()
     } else {
         console.log(e)
     }
