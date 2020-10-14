@@ -1,5 +1,6 @@
 let currentCalc = '0';
 let display = document.querySelector('#calc-display')
+let logElement = document.querySelector('#log')
 
 let buttonList = document.getElementsByClassName('number-button')
 for (i=0; i < buttonList.length; i++){
@@ -26,9 +27,15 @@ const calcSocket = new WebSocket(
 
 calcSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
+    childCount = logElement.childElementCount
+    if (childCount >= 10) {
+        let extra = logElement.lastElementChild
+        console.log(extra.innerHTML)
+        extra.remove()
+    }
     var el = document.createElement("h5")
     el.innerHTML = data.calculation
-    document.querySelector('#log').prepend(el)
+    logElement.prepend(el)
 }
 
 document.querySelector('#enter').onclick = function(e){
