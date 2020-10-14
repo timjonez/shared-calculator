@@ -28,7 +28,7 @@ calcSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
     var el = document.createElement("h5")
     el.innerHTML = data.calculation
-    document.querySelector('#log').appendChild(el)
+    document.querySelector('#log').prepend(el)
 }
 
 document.querySelector('#enter').onclick = function(e){
