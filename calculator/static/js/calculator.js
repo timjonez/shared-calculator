@@ -24,9 +24,7 @@ function addToCalc(e){
 }
 
 const calcSocket = new WebSocket(
-    'ws://'
-    + window.location.host
-    + '/ws/calculations/'
+    `ws://${window.location.host}/ws/calculations/`
 );
 
 calcSocket.onmessage = function(e) {
