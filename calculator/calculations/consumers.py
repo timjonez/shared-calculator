@@ -8,7 +8,7 @@ from .models import Calculation
 
 class CalculationConsumer(WebsocketConsumer):
     def get_calculations(self):
-        calculations = Calculation.objects.all().order_by('date_created')[:10]
+        calculations = reversed(Calculation.objects.all().order_by('-date_created')[:10])
         for calculation in calculations:
             self.send(text_data=json.dumps({'calculation': calculation.body }))
     def connect(self):
