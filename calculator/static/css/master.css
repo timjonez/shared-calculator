@@ -18,7 +18,7 @@ html, body{
     font-size: 1.5em;
 }
 
-#clear, .operator{
+#clearAll, #clear, .operator{
     background-color:   white;
     border: 2px solid #d9d9d9;
     width: 100%;
@@ -27,10 +27,16 @@ html, body{
 
 
 #enter{
-    background-color: red;
+    background-color: white;
     border: 2px solid #d9d9d9;
-    height: 80%;
     font-size: 1.5em;
+}
+
+.large-button{
+    background-color: white;
+    border: 2px solid #d9d9d9;
+    font-size: 1.5em;
+    height: 40%;
 }
 
 #calc-display{
