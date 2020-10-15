@@ -14,30 +14,8 @@ function addClickListen(className, clickFunc){
     }
 }
 
-addClickListen('number-button', addToCalc)
-addClickListen('operator', addToCalc)
-
-
-const calcSocket = new WebSocket(
-    `ws://${window.location.host}/ws/calculations/`
-);
-
-calcSocket.onmessage = function(e) {
-    const data = JSON.parse(e.data);
-    childCount = logElement.childElementCount
-    if (childCount >= 10) {
-        let extra = logElement.lastElementChild
-        extra.remove()
-    }
-    var el = document.createElement("h5")
-    el.innerHTML = data.calculation
-    logElement.prepend(el)
-}
-
-document.querySelector('#enter').addEventListener('click', startCalculation)
-
 function startCalculation(e){
-    splitExpression(currentCalc)
+    calculate(currentCalc)
     calcSocket.send(JSON.stringify(
         {
             'calculation': currentCalc
@@ -48,13 +26,17 @@ document.querySelector('#clearAll').onclick = function(e){
     display.value = currentCalc = '0'
 }
 
-document.querySelector('#clear').addEventListener('click', deleteLastChar)
 function deleteLastChar(e) {
     lastChar = display.value.length - 1
     display.value = currentCalc = display.value.slice(0, lastChar)
 }
 
-function splitExpression(input) {
+addClickListen('number-button', addToCalc)
+addClickListen('operator', addToCalc)
+document.querySelector('#enter').addEventListener('click', startCalculation)
+document.querySelector('#clear').addEventListener('click', deleteLastChar)
+
+function calculate(input) {
     for (let i = 0; i < input.length; i++) {
         if (input[i] ==  "+" || input[i] ==  "-") {
             continue;
@@ -88,7 +70,21 @@ document.onkeyup = function(e){
         startCalculation()
     } else if (e.key == 'Backspace') {
         deleteLastChar()
-    } else {
-        console.log(e)
     }
+}
+
+const calcSocket = new WebSocket(
+    `ws://${window.location.host}/ws/calculations/`
+);
+
+calcSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    childCount = logElement.childElementCount
+    if (childCount >= 10) {
+        let extra = logElement.lastElementChild
+        extra.remove()
+    }
+    var el = document.createElement("h5")
+    el.innerHTML = data.calculation
+    logElement.prepend(el)
 }
