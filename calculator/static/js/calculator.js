@@ -55,48 +55,22 @@ function deleteLastChar(e) {
 }
 
 function splitExpression(input) {
-    let result = ''
     for (let i = 0; i < input.length; i++) {
-        switch (input[i]) {
-            case "+":
-                result = Calculate(Number(input.slice(0, i)), "+", Number(input.slice(i+1, input.length)))
-                currentCalc = currentCalc + ' = '+ result.toString()
-                display.value = result
-                break;
-            case "-":
-                result = Calculate(Number(input.slice(0, i)), "-", Number(input.slice(i+1, input.length)))
-                currentCalc = currentCalc + ' = '+ result.toString()
-                display.value = result
-                break;
-            case "×":
-                result = Calculate(Number(input.slice(0, i)), "×", Number(input.slice(i+1, input.length)))
-                currentCalc = currentCalc + ' = '+ result.toString()
-                display.value = result
-                break;
-            case "÷":
-                result = Calculate(Number(input.slice(0, i)), "÷", Number(input.slice(i+1, input.length)))
-                currentCalc = currentCalc + ' = '+ result.toString()
-                display.value = result
-                break;
-            default:
-                break;
+        if (input[i] ==  "+" || input[i] ==  "-") {
+            continue;
+        } else if (input[i] ==  "×") {
+            input = input.replace("×", "*")
+        } else if (input[i] ==  "÷") {
+            input = input.replace("÷", "/")
+        } else if (!isNaN(input[i])) {
+            continue;
+        } else {
+            throw "This doesn't look like a valid expression"; 
         }
     }
-}
-
-function Calculate(firstNumber, operator, secondNumber) {
-    switch (operator) {
-        case "+":
-            return firstNumber + secondNumber;
-        case "-":
-            return firstNumber - secondNumber;
-        case "×":
-            return firstNumber * secondNumber;
-        case "÷":
-            return firstNumber / secondNumber;
-        default:
-            break;
-    }
+    let result = eval(input)
+    currentCalc = display.value + " = " + result
+    display.value = result
 }
 
 document.onkeyup = function(e){
